@@ -1,0 +1,68 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <form class="row col-8 g-3">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail4">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword4">
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">City</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">State</label>
+          <select id="inputState" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="inputZip" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div>
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="inputAddress" class="form-label">Addresses</label>
+            <div
+              *ngFor="let address of model.addresses; let i = index"
+              class="input-group mb-3"
+            >
+              <input
+                [(ngModel)]="address.address"
+                [name]="'address_' + i"
+                type="text"
+                class="form-control"
+                id="inputAddress"
+                placeholder="1234 Main St"
+              >
+              <button *ngIf="i > 0" class="btn btn-danger" type="button" id="button-addon2">X</button>
+            </div>
+          </div>
+          <div class="d-grid gap-2">
+            <button (click)="addAddressControl()" class="btn btn-primary" type="button">Agregar dirección</button>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </form>
+      <div class="col-4">
+        <h5>Valor</h5>
+        <pre>{{ model | json }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
