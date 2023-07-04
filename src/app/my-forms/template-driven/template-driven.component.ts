@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./template-driven.component.scss']
 })
 export class TemplateDrivenComponent {
-  model = {
+  userModel = {
     email: '',
     password: '',
     city: '',
@@ -19,7 +19,28 @@ export class TemplateDrivenComponent {
     ]
   }
 
-  addAddressControl(): void {
-    this.model.addresses.push({ address: '' });
+  onSubmit(): void {
+    console.log(this.userModel);
   }
+
+  addAddressControl(): void {
+    this.userModel.addresses.push({ address: '' });
+  }
+
+  // model = {
+  //   email: '',
+  //   password: '',
+  //   city: '',
+  //   state: '',
+  //   zip: '',
+  //   addresses: [
+  //     {
+  //       address: ''
+  //     },
+  //   ]
+  // }
+
+  // addAddressControl(): void {
+  //   this.model.addresses.push({ address: '' });
+  // }
 }
