@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6">
           <label for="inputPassword4" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword4" />
+          <input [formControl]="passwordControl" type="password" class="form-control" id="inputPassword4" />
         </div>
         <div class="col-md-6">
           <label for="inputCity" class="form-label">City</label>
@@ -21,8 +21,12 @@
             formControlName="city"
             type="text"
             class="form-control"
+            [class.is-invalid]="cityControl.touched && cityControl.invalid"
             id="inputCity"
           />
+          <div class="invalid-feedback">
+            El campo es requerido
+          </div>
         </div>
         <div class="col-md-4">
           <label for="inputState" class="form-label">State</label>
@@ -38,17 +42,24 @@
         <div class="col-12">
           <div class="mb-3">
             <label for="inputAddress" class="form-label">Addresses</label>
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="inputAddress"
-                placeholder="1234 Main St"
-              />
+            <div
+              *ngFor="let addressFormGroup of addresesFormArray.controls; let i = index"
+              class="input-group mb-3"
+            >
+              <ng-container [formGroup]="addressFormGroup">
+                <input
+                  formControlName="address"
+                  type="text"
+                  class="form-control"
+                  id="inputAddress"
+                  placeholder="1234 Main St"
+                />
+              <button *ngIf="i > 0" (click)="deleteFormGroupFromAddressesFormArray(i)" class="btn btn-danger" type="button" id="button-addon2">X</button>
+              </ng-container>
             </div>
           </div>
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button">
+            <button (click)="addAddressControl()" class="btn btn-primary" type="button">
               Agregar dirección
             </button>
           </div>
